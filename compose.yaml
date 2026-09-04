@@ -1,0 +1,15 @@
+services:
+  robin:
+    build: .
+    image: robin:latest
+    container_name: robin
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./.env:/app/.env:ro
+      - ./investigations:/app/investigations
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "8501:8501"
